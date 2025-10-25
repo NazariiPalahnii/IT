@@ -3,16 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <title>{{titleOfWebsite}}</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+  <title>{{ titleOfWebsite }}</title>
 </head>
 <body>
-    <header class="header">
+  <!-- header -->
+  <header class="header">
+    <div class="header_container">
       <div class="header_title">
-        <img src="{{ url_for('static', filename='Exclude.png') }}"/>
-        <h2>{{headerTitle}}</h1>
+        <img src="{{ url_for('static', filename='img/username.png') }}">
       </div>
-      
-    </header>
+      <nav class="header_nav">
+        <ul class="header_ul">
+          <li class="header_li">Github</li>
+          <li class="header_li">Instagram</li>
+          <li class="header_li">Blog</li>
+          <li class="header_li">Reddit</li> 
+        </ul>
+      </nav>  
+    </div>  
+  </header>
+
+  <!-- main -->
+  <main class="main">
+    <div class="main_container">
+      <div class="main_title">
+        <img src="{{ url_for('static', filename='img/username.png') }}">
+        <h2>I'm using NixOS</h2>
+        <p>Some text about me</p>
+      </div>
+      <img src="{{ url_for('static', filename='img/logo.jpg') }}">
+    </div>
+  </main>
+
+  <!-- footer -->
+  <footer class="footer">
+    <div class="footer_container">
+      <div class="footer_icon">
+
+      </div>
+      <div class="footer_icon">
+
+      </div>
+      <div class="footer_icon">
+
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

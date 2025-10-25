@@ -8,7 +8,7 @@ def index():
     return render_template(
         'index.html', 
         titleOfWebsite='My Portfolio',
-        headerTitle='Prizrak_幽霊'
+        logo='Prizrak_幽霊'
     )
 
 if __name__ == '__main__':

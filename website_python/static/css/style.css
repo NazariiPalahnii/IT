@@ -1,6 +1,87 @@
-*,body {
-  background-color: #000;
-  opacity: 0;
+:root {
+  --default-bg: #09090B;
+  --lighter-bg: #1c1e1f;
+  --selection-bg: #313244;
+  --hover-color: #ffff;
+}
+/* Main change */
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
+* {
+  color: var(--hover-color);
+  background: #000;
   margin: 0;
-  color: #fff;
-};
+  font-family: "Merriweather", serif;
+}
+
+/* Header */
+.header {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.header_container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header_title {
+  width: 140px;
+}
+
+.header_title img {
+  width: 140px;
+  cursor: pointer;
+}
+
+.header_nav {
+  width: 400px;
+}
+
+.header_ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+/* Main */
+
+.main {
+  margin-top: 120px;
+}
+
+.main_container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  background: var(--lighter-bg);
+  padding: 120px 0px 120px 0px;
+  border: solid 2px var(--hover-color);
+}
+
+.main_title {
+  background: var(--lighter-bg);
+}
+
+.main_title img {
+  background: var(--lighter-bg);
+}
+
+.main_title h2 {
+  margin: 10px 0px 10px 0px;
+  background: var(--lighter-bg);
+
+}
+
+.main_title p {
+  background: var(--lighter-bg);
+}
+
+.main_container img {
+  width: 400px;
+}
