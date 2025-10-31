@@ -6,28 +6,26 @@ import pathlib
 user = "Prizrak"
 userLaptop = "laptop_Prizrak"
 
-nixos = list(pathlib.Path('/etc/nixos/').iterdir())
-punkt = '.'
-scam = ''
+listFiles = []
+nixos = pathlib.Path('/etc/nixos/')
 
-print(nixos)
-for i in range(len(nixos)):
-    if punkt in str(nixos[i]):
-        print(nixos[i], True)
-    else:
-        path = list(pathlib.Path(f'{nixos[i]}').iterdir())
-        scam = path
-        print(str(scam))
-        print(nixos[i], False)
+def traverse_directories(current_path: pathlib.Path):
+    for i in current_path.iterdir():
+        if i.is_dir():
+            print(f"Обход директории: {i}")
+            listFiles.append(i)
+            traverse_directories(i)
+        elif i.is_file():
+            print(f"Найден файл: {i}")
 
+traverse_directories(nixos)
 
 ## FUNCTION FOR FIND MY FILES
 def find_files(pattern):
     return glob.glob(pattern, recursive=True)
 
 ## MY PATHS TO FILRS
-files = find_files(f'/home/{user}/IT/Python _codes/*.py')
-files1 = find_files(f'/home/{user}/IT/Python _codes/*.py')
+# fileWork = find_files(f'{files}/*.nix')
 
 ## FUNCTION TO MAKE A LIST NAMES OF MY FILES
 def nameFile(file_paths):
@@ -51,14 +49,6 @@ def openFile(file_paths):
 
     return contentList
     
-
-old = openFile(files)
-
-new = openFile(files1)
-
-nameOld = nameFile(files)
-nameNew = nameFile(files1)
-
 
 #for j in range(len(nameNew)):
 #    for i in range(2, len(nameOld)):
