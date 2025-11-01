@@ -1,60 +1,50 @@
-import os
-import glob
+import os 
 import pathlib
-
 
 user = "Prizrak"
 userLaptop = "laptop_Prizrak"
 
-listFiles = []
-nixos = pathlib.Path('/etc/nixos/')
+pathBathEtc = pathlib.Path('/etc/')
+pathBathHome = pathlib.Path(f'/home/{user}/')
+pathBathHomeD = pathlib.Path(f'/home/{user}/Documents')
 
+# nixos = pathlib.Path('/etc/nixos/')
+nixos = pathlib.Path(f'/home/{user}/Documents/nixos/')
+
+newNixos = pathlib.Path(f'/home/{user}/nixos/')
+
+# OPEN DIRECTORIES AND FIND FILES
 def traverse_directories(current_path: pathlib.Path):
+    listFiles = []
+
     for i in current_path.iterdir():
         if i.is_dir():
-            print(f"Обход директории: {i}")
-            listFiles.append(i)
-            traverse_directories(i)
+            function = traverse_directories(i)
+            listFiles.extend(function)
         elif i.is_file():
-            print(f"Найден файл: {i}")
+            if i.suffix == '.nix':
+                listFiles.append(i)
 
-traverse_directories(nixos)
 
-## FUNCTION FOR FIND MY FILES
-def find_files(pattern):
-    return glob.glob(pattern, recursive=True)
+    return listFiles
 
-## MY PATHS TO FILRS
-# fileWork = find_files(f'{files}/*.nix')
+nameNew = traverse_directories(newNixos)
+nameOld = traverse_directories(nixos)
 
-## FUNCTION TO MAKE A LIST NAMES OF MY FILES
-def nameFile(file_paths):
-    nameList = []
-    for name in file_paths:
-        namePath = os.path.basename(name)
-        nameList.append(namePath)
 
-    return nameList
-
-## FUNCTION TO OPEN MY FILES BY THE PATH 
-def openFile(file_paths):
-    contentList = []
-    for path in file_paths:
-        try:
-            with open(path, 'r') as f:
-                content = f.read()
-                contentList.append(content)
-        except Exception as e:
-            print(f'I dont find the file: {path}: {e}')
-
-    return contentList
+for j in range(len(nameNew)):
+    for i in range(2, len(nameOld)):
+        new = nameNew[j].relative_to(pathBathHome)
+        old = nameOld[i].relative_to(pathBathHomeD)
+        if new == old:
+            if nameNew[j].read_text() == nameOld[i].read_text(): 
+                print(True)
+            elif nameNew[j].read_text() != nameOld[i].read_text():
+                print(f'The files arent correct :( : {nameNew[j].read_text()} and {nameOld[i].read_text()}')
+                question = input("Do you want to upgrade? (input y/n y = yes, n = no): ")
+                if question.lower() == 'y':
+                    content = nameNew[j].read_text(encoding='utf-8')
+                    nameOld[i].write_text(content, encoding='utf-8')
+                    print('IT WORKS!!!!!!!')
+                    print(nameNew[j], nameOld[i])
     
-
-#for j in range(len(nameNew)):
-#    for i in range(2, len(nameOld)):
-#        if nameNew[j] == nameOld[i]:
-#           os.system('') 
-#        else:
-#            print(nameNew[j], nameOld[i], False)
-#            break
-
